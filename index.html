@@ -1,18 +1,38 @@
----
-layout: default
-title: 首页
----
+<!DOCTYPE html>
+<html lang="zh">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>山海之间</title>
+<link rel="stylesheet" href="assets/css/style.css">
+</head>
 
-<section class="post-list">
+<body>
 
-{% for post in site.posts %}
-  <div class="card">
-    <a href="{{ site.baseurl }}{{ post.url }}">
-      <h2>{{ post.title }}</h2>
-      <p>{{ post.date | date: "%Y-%m-%d" }}</p>
-      <span class="read-more">阅读 →</span>
-    </a>
+<nav class="navbar">
+  <div class="logo">山海之间</div>
+  <div class="nav-right">
+    <button onclick="toggleDark()">🌙</button>
   </div>
-{% endfor %}
+</nav>
 
+<header class="hero">
+  <div class="hero-inner">
+    <h1>山海之间</h1>
+    <p>在风与湖之间，记录行走的痕迹</p>
+  </div>
+</header>
+
+<section class="content">
+  <h2 class="section-title">旅行记录</h2>
+  <div id="postList" class="post-grid"></div>
 </section>
+
+<footer>
+  © 2026 山海之间
+</footer>
+
+<script src="assets/js/app.js"></script>
+
+</body>
+</html>
