@@ -1,0 +1,71 @@
+body{
+  margin:0;
+  font-family:"Hiragino Sans GB","Microsoft YaHei",sans-serif;
+  background:linear-gradient(180deg,#f5f4ef,#eceae4);
+  color:#3e3e3e;
+  transition:0.3s;
+}
+
+/* 导航 */
+.navbar{
+  display:flex;
+  justify-content:space-between;
+  align-items:center;
+  padding:20px 60px;
+  background:rgba(255,255,255,0.6);
+  backdrop-filter:blur(12px);
+  position:sticky;
+  top:0;
+}
+
+.logo a{
+  text-decoration:none;
+  font-size:20px;
+  letter-spacing:4px;
+  color:#6f8f77;
+}
+
+/* hero */
+.hero{
+  height:60vh;
+  background:
+  linear-gradient(rgba(0,0,0,0.3),rgba(0,0,0,0.3)),
+  url("../images/banner.jpg") center/cover no-repeat;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  color:white;
+}
+
+.container{
+  max-width:900px;
+  margin:60px auto;
+  padding:20px;
+}
+
+.card{
+  background:white;
+  padding:30px;
+  border-radius:18px;
+  margin-bottom:30px;
+  box-shadow:0 20px 40px rgba(0,0,0,0.05);
+}
+
+.post-title{
+  font-size:32px;
+}
+
+.post-content{
+  line-height:1.9;
+}
+
+.dark{
+  background:#1e1e1e;
+  color:#ddd;
+}
+
+footer{
+  text-align:center;
+  padding:40px;
+  color:#888;
+}
