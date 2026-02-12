@@ -74,3 +74,24 @@ footer {
 .dark-mode .card {
   background:#2b2b2b;
 }
+.navbar {
+  display:flex;
+  justify-content:space-between;
+  align-items:center;
+  padding:20px 40px;
+  background:#F8F6F2;
+  position:sticky;
+  top:0;
+  z-index:100;
+}
+
+.nav-links a {
+  margin-left:20px;
+  text-decoration:none;
+  color:#3E3E3E;
+}
+
+.nav-links a:hover {
+  color:#7A9E7E;
+}
+
