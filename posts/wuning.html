@@ -1,0 +1,314 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>2026正月初三：南昌出发备选一日游</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Noto+Serif+SC:wght@400;700&family=Noto+Sans+SC:wght@300;400;700&display=swap');
+        
+        body { font-family: 'Noto Sans SC', sans-serif; background-color: #fafaf9; color: #1c1917; }
+        .serif { font-family: 'Noto Serif SC', serif; }
+        
+        .glass-header {
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(8px);
+            border-bottom: 1px solid #e7e5e4;
+        }
+
+        .chart-container {
+            position: relative;
+            width: 100%;
+            max-width: 600px;
+            margin-left: auto;
+            margin-right: auto;
+            height: 250px;
+            max-height: 300px;
+        }
+
+        .timeline-box {
+            position: relative;
+            padding-left: 24px;
+            padding-bottom: 24px;
+            border-left: 2px solid #d6d3d1;
+        }
+
+        .timeline-box::before {
+            content: '';
+            position: absolute;
+            left: -8px;
+            top: 2px;
+            width: 14px;
+            height: 14px;
+            background: #ca8a04;
+            border: 3px solid #fefce8;
+            border-radius: 50%;
+        }
+
+        .nav-btn {
+            transition: all 0.3s ease;
+            border: 2px solid transparent;
+        }
+        
+        .nav-btn-lichuan.active {
+            border-color: #991b1b;
+            background-color: #fef2f2;
+        }
+        
+        .nav-btn-wuning.active {
+            border-color: #0d9488;
+            background-color: #f0fdfa;
+        }
+
+        .theme-lichuan { --theme-color: #991b1b; --theme-light: #fef2f2; }
+        .theme-wuning { --theme-color: #0d9488; --theme-light: #f0fdfa; }
+    </style>
+    <!-- Chosen Palette: 
+         - 黎川主题: 绛红 (#991b1b) - 代表明清古镇与春节年味
+         - 武宁主题: 湖蓝 (#0d9488) - 代表西海的静谧与山水
+    -->
+    
+    <!-- Application Structure Plan: 
+         1. 顶导: 明确 2.19 (初三) 从南昌出发。
+         2. 双线选择: 左右分明的黎川与武宁按键，点击切换全局主题色。
+         3. 核心信息区: 动态展示单程距离、耗时、核心体验词汇。
+         4. 时间轴: 09:00 - 19:00 的精细行程。
+         5. 图表分析: 
+            - 雷达图：对比两个目的地的属性 (人文、自然、美食等)。
+            - 人流预警：柱状图展示初三当天的拥挤度变化，指导出行。
+    -->
+</head>
+<body class="antialiased transition-colors duration-500 theme-lichuan" id="app-body">
+
+    <!-- Header -->
+    <header class="glass-header sticky top-0 z-50">
+        <div class="max-w-6xl mx-auto px-6 h-16 flex items-center justify-between">
+            <div class="flex items-center gap-3">
+                <span class="text-2xl" id="header-icon">🏮</span>
+                <h1 class="font-bold text-lg tracking-tight">南昌出发·<span id="header-title" style="color: var(--theme-color);">古城年味线</span></h1>
+            </div>
+            <div class="text-xs font-bold text-stone-400">
+                2026.02.19 (正月初三)
+            </div>
+        </div>
+    </header>
+
+    <main class="max-w-6xl mx-auto px-4 py-8">
+
+        <!-- Destination Selector -->
+        <section class="mb-10">
+            <p class="text-[10px] font-bold text-stone-400 uppercase tracking-widest mb-4 ml-2">选择备选方案</p>
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+                <button onclick="switchPlan('lichuan')" id="btn-lichuan" class="nav-btn nav-btn-lichuan active bg-white p-6 rounded-3xl shadow-sm text-left relative overflow-hidden">
+                    <div class="absolute right-[-20px] top-[-20px] text-8xl opacity-5">🏮</div>
+                    <div class="flex items-center gap-3 mb-2">
+                        <span class="text-3xl">🏮</span>
+                        <h2 class="text-2xl font-bold text-stone-800 serif">抚州·黎川古城</h2>
+                    </div>
+                    <p class="text-sm text-stone-500">明清风华，极致年味与在地美食</p>
+                    <div class="mt-4 flex gap-2">
+                        <span class="text-[10px] font-bold px-2 py-1 bg-red-50 text-red-800 rounded">170KM</span>
+                        <span class="text-[10px] font-bold px-2 py-1 bg-red-50 text-red-800 rounded">2.5H</span>
+                    </div>
+                </button>
+
+                <button onclick="switchPlan('wuning')" id="btn-wuning" class="nav-btn nav-btn-wuning bg-white p-6 rounded-3xl shadow-sm text-left relative overflow-hidden">
+                    <div class="absolute right-[-20px] top-[-20px] text-8xl opacity-5">⛰️</div>
+                    <div class="flex items-center gap-3 mb-2">
+                        <span class="text-3xl">⛰️</span>
+                        <h2 class="text-2xl font-bold text-stone-800 serif">九江·武宁西海</h2>
+                    </div>
+                    <p class="text-sm text-stone-500">中国最美小城，自驾环湖吸氧</p>
+                    <div class="mt-4 flex gap-2">
+                        <span class="text-[10px] font-bold px-2 py-1 bg-teal-50 text-teal-800 rounded">150KM</span>
+                        <span class="text-[10px] font-bold px-2 py-1 bg-teal-50 text-teal-800 rounded">2H</span>
+                    </div>
+                </button>
+            </div>
+        </section>
+
+        <!-- Dynamic Content Area -->
+        <div class="grid grid-cols-1 lg:grid-cols-12 gap-8 mb-12">
+            
+            <!-- Left: Details & Timeline (7/12) -->
+            <div class="lg:col-span-7 bg-white rounded-[2.5rem] p-8 md:p-12 shadow-sm border border-stone-200">
+                <div class="mb-10 border-b border-stone-100 pb-8">
+                    <h3 id="plan-slogan" class="text-xl md:text-2xl font-bold mb-4 leading-relaxed" style="color: var(--theme-color);"></h3>
+                    <p id="plan-desc" class="text-sm text-stone-500 leading-relaxed"></p>
+                </div>
+
+                <div id="timeline-container">
+                    <!-- Timeline Injected -->
+                </div>
+            </div>
+
+            <!-- Right: Charts & Tips (5/12) -->
+            <div class="lg:col-span-5 space-y-8">
+                
+                <!-- Radar Assessment -->
+                <div class="bg-white rounded-[2rem] p-8 shadow-sm border border-stone-200">
+                    <h4 class="text-center text-xs font-bold text-stone-400 uppercase tracking-widest mb-6">目的地属性对比</h4>
+                    <div class="chart-container" style="height: 220px;">
+                        <canvas id="radarChart"></canvas>
+                    </div>
+                </div>
+
+                <!-- Crowd Warning -->
+                <div class="bg-white rounded-[2rem] p-8 shadow-sm border border-stone-200">
+                    <h4 class="text-center text-xs font-bold text-stone-400 uppercase tracking-widest mb-6">正月初三客流压力预测</h4>
+                    <div class="chart-container" style="height: 180px;">
+                        <canvas id="crowdChart"></canvas>
+                    </div>
+                    <p class="text-[10px] text-stone-400 text-center mt-4">武宁主要为环湖自驾，人群分散；黎川古城核心区人流集中。</p>
+                </div>
+
+                <!-- Food Highlight -->
+                <div class="rounded-[2rem] p-8" id="food-card" style="background-color: var(--theme-light); border: 1px solid var(--theme-color);">
+                    <h4 class="font-bold mb-4 flex items-center gap-2" style="color: var(--theme-color);">
+                        <span id="food-icon">🍜</span> 必吃推荐
+                    </h4>
+                    <ul id="food-list" class="space-y-3 text-sm">
+                        <!-- Food Injected -->
+                    </ul>
+                </div>
+            </div>
+        </div>
+
+    </main>
+
+    <script>
+        // Data Definitions
+        const data = {
+            lichuan: {
+                themeColor: '#991b1b',
+                headerIcon: '🏮',
+                headerTitle: '古城年味线',
+                slogan: '在赣闽交界，寻回最浓烈的明清年味。',
+                desc: '如果你觉得南昌万寿宫过于商业化，那么抚州黎川古城绝对能满足你对“古镇春节”的所有想象。这里有近百幢保存完好的明清骑楼老街，正月初三正是舞龙灯、品尝特色小吃最热闹的时候。',
+                radar: [95, 30, 90, 85, 70], // 人文, 自然, 美食, 年味, 避挤度
+                crowd: [30, 60, 90, 85, 95, 80], // 09:00 - 19:00
+                foodIcon: '🥢',
+                foodList: [
+                    '<strong>黎川水粉：</strong> 抚州绝杀，比南昌拌粉更水润，配上牛杂绝了。',
+                    '<strong>芋糍/灌芯糖：</strong> 古街上的传统手工艺，年节必备。',
+                    '<strong>黎川熬菜：</strong> 一锅炖尽山珍海味，冬日极品暖锅。'
+                ],
+                timeline: [
+                    { t: '09:00', title: '南昌出发 ➔ 抚州黎川', desc: '经福银高速（G70）向东南方向行驶。约170公里，2.5小时可达。注意福银高速部分路段在节假日车流较多，请保持车距。' },
+                    { t: '11:30', title: '抵达古城 ➔ 嗦一碗水粉', desc: '将车停在古城外围停车场。进入古城第一件事，找一家老店嗦一碗热腾腾的黎川牛杂水粉。' },
+                    { t: '13:00', title: '漫步明清老街', desc: '全长1.8公里的骑楼式老街。参观张恨水旧居、李氏家庙。初三街上会有各种传统手工艺展示和年货摊位，年味极浓。' },
+                    { t: '15:30', title: '新丰桥看水车', desc: '走到黎滩河边，看标志性的新丰桥和巨大的水车，这里是摄影打卡的绝佳位置。' },
+                    { t: '17:30', title: '品尝黎川土菜', desc: '晚餐安排在古城周边的土菜馆，必点黎川熬菜、红烧肉。' },
+                    { t: '19:00', title: '夜景与返程', desc: '红灯笼亮起后的古街别有风味。约19:30启程返回南昌，避开初三晚间聚餐结束的同城拥堵。' }
+                ]
+            },
+            wuning: {
+                themeColor: '#0d9488',
+                headerIcon: '⛰️',
+                headerTitle: '山水环湖线',
+                slogan: '中国最美小城，承包一片宁静的“海”。',
+                desc: '正月初三，当所有人都在挤名胜古迹时，向西前往九江武宁（庐山西海畔）是一条完美的避世自驾线。在这里，重点不是“逛景点”，而是开着车，在山水之间自由呼吸。',
+                radar: [40, 95, 70, 50, 95], // 人文, 自然, 美食, 年味, 避挤度
+                crowd: [10, 20, 30, 40, 30, 20],
+                foodIcon: '🐟',
+                foodList: [
+                    '<strong>西海胖头鱼：</strong> 水质极佳，鱼头汤呈现奶白色，鲜美无比。',
+                    '<strong>武宁什锦汤：</strong> 极具地方特色的汤羹，内容丰富。',
+                    '<strong>农家腊肉/笋干：</strong> 山里的冬笋配上自家熏制的腊肉。'
+                ],
+                timeline: [
+                    { t: '09:30', title: '慵懒出发 ➔ 九江武宁', desc: '经昌铜高速或永武高速。约150公里，2小时车程。因为不去热门景区，可以稍微晚点出门。' },
+                    { t: '11:30', title: '自驾最美水上公路', desc: '永武高速武宁段被称为“水上高速”，两旁皆是湖水与岛屿。在合适的观景台（注意安全标示）停靠拍照。' },
+                    { t: '12:30', title: '长水村/农家乐午餐', desc: '前往武宁县的生态村落（如长水村）。在农家乐品尝正宗的庐山西海有机鱼头汤和山野蔬菜。' },
+                    { t: '14:30', title: '环湖慢自驾与野餐', desc: '找一条靠近湖边的乡道慢悠悠地开，挑一块无人的草地，喝喝茶、晒晒太阳，彻底放空。' },
+                    { t: '16:30', title: '西海湾景区漫步', desc: '傍晚前往县城内的西海湾景区，走走栈道，看县城依山傍水的独特景致。' },
+                    { t: '18:00', title: '轻松返程', desc: '因为主要活动是自驾和休息，体力消耗小，可以在武宁县城简单吃个晚饭后，轻松开回南昌。' }
+                ]
+            }
+        };
+
+        let radarChart = null;
+        let crowdChart = null;
+
+        function switchPlan(planKey) {
+            const plan = data[planKey];
+
+            // Update UI State
+            document.body.className = `antialiased transition-colors duration-500 theme-${planKey}`;
+            document.getElementById('btn-lichuan').classList.toggle('active', planKey === 'lichuan');
+            document.getElementById('btn-wuning').classList.toggle('active', planKey === 'wuning');
+
+            // Update Text Data
+            document.getElementById('header-icon').innerText = plan.headerIcon;
+            document.getElementById('header-title').innerText = plan.headerTitle;
+            document.getElementById('plan-slogan').innerText = plan.slogan;
+            document.getElementById('plan-desc').innerText = plan.desc;
+            document.getElementById('food-icon').innerText = plan.foodIcon;
+            document.getElementById('food-list').innerHTML = plan.foodList.map(f => `<li>${f}</li>`).join('');
+
+            // Update Timeline
+            const tlBox = document.getElementById('timeline-container');
+            tlBox.innerHTML = plan.timeline.map(item => `
+                <div class="timeline-box">
+                    <span class="block text-[10px] font-black mb-1 uppercase tracking-widest" style="color: var(--theme-color);">${item.t}</span>
+                    <h5 class="font-bold text-stone-800 text-base">${item.title}</h5>
+                    <p class="text-xs text-stone-500 mt-2 leading-relaxed">${item.desc}</p>
+                </div>
+            `).join('');
+
+            updateCharts(plan);
+        }
+
+        function updateCharts(plan) {
+            // Radar Chart
+            const rCtx = document.getElementById('radarChart').getContext('2d');
+            if (radarChart) radarChart.destroy();
+            radarChart = new Chart(rCtx, {
+                type: 'radar',
+                data: {
+                    labels: ['历史人文', '自然风光', '在地美食', '春节年味', '错峰避挤度'],
+                    datasets: [{
+                        label: '属性得分',
+                        data: plan.radar,
+                        backgroundColor: plan.themeColor + '33', // 20% opacity
+                        borderColor: plan.themeColor,
+                        pointBackgroundColor: plan.themeColor,
+                        borderWidth: 2
+                    }]
+                },
+                options: {
+                    responsive: true, maintainAspectRatio: false,
+                    scales: { r: { beginAtZero: true, max: 100, ticks: { display: false } } },
+                    plugins: { legend: { display: false } }
+                }
+            });
+
+            // Crowd Bar Chart
+            const cCtx = document.getElementById('crowdChart').getContext('2d');
+            if (crowdChart) crowdChart.destroy();
+            crowdChart = new Chart(cCtx, {
+                type: 'bar',
+                data: {
+                    labels: ['09:00', '11:00', '13:00', '15:00', '17:00', '19:00'],
+                    datasets: [{
+                        label: '拥挤指数',
+                        data: plan.crowd,
+                        backgroundColor: plan.themeColor,
+                        borderRadius: 4
+                    }]
+                },
+                options: {
+                    responsive: true, maintainAspectRatio: false,
+                    scales: { y: { beginAtZero: true, max: 100, display: false }, x: { grid: { display: false } } },
+                    plugins: { legend: { display: false } }
+                }
+            });
+        }
+
+        // Initialize
+        window.onload = () => switchPlan('lichuan');
+    </script>
+</body>
+</html>
