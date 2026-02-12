@@ -16,3 +16,8 @@ fetch("data/posts.json")
     `;
   });
 });
+
+function toggleDark(){
+  document.body.classList.toggle("dark-mode");
+}
+
