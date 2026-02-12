@@ -1,7 +1,0 @@
-title: 山海之间
-description: 在风与湖之间，记录行走的痕迹
-baseurl: "/trip"
-url: "https://mywj20.github.io"
-
-markdown: kramdown
-permalink: /:year/:month/:day/:title/
