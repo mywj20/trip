@@ -1,45 +1,18 @@
-<!DOCTYPE html>
-<html lang="zh">
-<head>
-<meta charset="UTF-8">
-<title>山海之间 · 旅行日记</title>
-<link rel="stylesheet" href="assets/css/style.css">
+---
+layout: default
+title: 首页
+---
 
-<script defer src="assets/js/main.js"></script>
-<script defer src="assets/js/search.js"></script>
+<section class="post-list">
 
-<script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
-</head>
-
-<body>
-
-<nav class="navbar">
-  <div class="logo">山海之间</div>
-  <div class="nav-links">
-    <a href="./">首页</a>
-    <a href="gallery.html">照片墙</a>
-    <a href="map.html">足迹地图</a>
-    <button onclick="toggleDark()">🌙</button>
+{% for post in site.posts %}
+  <div class="card">
+    <a href="{{ site.baseurl }}{{ post.url }}">
+      <h2>{{ post.title }}</h2>
+      <p>{{ post.date | date: "%Y-%m-%d" }}</p>
+      <span class="read-more">阅读 →</span>
+    </a>
   </div>
-</nav>
+{% endfor %}
 
-<header class="hero">
-  <div class="hero-text">
-    <h1>山海之间</h1>
-    <p>在风与湖之间，记录行走的痕迹</p>
-  </div>
-</header>
-
-<section class="search-section">
-  <input type="text" id="searchInput" placeholder="搜索目的地 / 标签">
 </section>
-
-<section id="postsContainer"></section>
-
-<footer>
-  <p>© 2026 山海之间</p>
-  <p>访问量：<span id="busuanzi_value_site_pv"></span></p>
-</footer>
-
-</body>
-</html>
