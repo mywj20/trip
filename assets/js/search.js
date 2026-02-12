@@ -1,17 +1,18 @@
 const input = document.getElementById("searchInput");
 
-input.addEventListener("input", function() {
+input.addEventListener("input",function(){
   const keyword = this.value.toLowerCase();
   fetch("data/posts.json")
-  .then(res => res.json())
-  .then(data => {
-    const container = document.getElementById("postsContainer");
-    container.innerHTML = "";
-    data.filter(post =>
+  .then(res=>res.json())
+  .then(data=>{
+    const container=document.getElementById("postsContainer");
+    container.innerHTML="";
+
+    data.filter(post=>
       post.title.toLowerCase().includes(keyword) ||
       post.tags.join("").includes(keyword)
-    ).forEach(post => {
-      container.innerHTML += `
+    ).forEach(post=>{
+      container.innerHTML+=`
         <div class="card">
           <a href="${post.url}">
             <img src="${post.cover}">
