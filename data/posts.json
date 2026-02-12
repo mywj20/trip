@@ -1,0 +1,14 @@
+[
+  {
+    "title": "永修吴城1日游",
+    "date": "2026-02-19",
+    "cover": "assets/images/wucheng.jpg",
+    "url": "posts/2026-wucheng.html",
+    "tags": ["江西","自驾","自然"],
+    "location": {
+      "name": "永修吴城",
+      "lat": 29.18,
+      "lng": 116.00
+    }
+  }
+]
