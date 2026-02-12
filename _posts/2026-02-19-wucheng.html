@@ -1,0 +1,287 @@
+---
+layout: post
+title: 永修吴城1日游
+---
+
+<!-- Top Navigation -->
+    <header class="glass-header sticky top-0 z-50">
+        <div class="max-w-6xl mx-auto px-6 h-20 flex items-center justify-between">
+            <div class="flex items-center gap-3">
+                <span class="text-3xl">🦢</span>
+                <div>
+                    <h1 class="font-bold text-xl tracking-tight text-slate-800">永修吴城 <span class="text-sky-500">一日自驾纪行</span></h1>
+                    <p class="text-[10px] text-slate-400 font-bold uppercase tracking-widest">Nanchang ➔ Wucheng | Feb 19, 2026</p>
+                </div>
+            </div>
+            <div class="hidden md:flex gap-6">
+                <div class="text-right">
+                    <p class="text-[10px] text-slate-400 font-bold uppercase">正月初三 · 高速免费</p>
+                    <p class="text-sm font-bold text-sky-600">距离: 90KM | 耗时: 1.5H</p>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <main class="max-w-6xl mx-auto px-4 py-8">
+
+        <!-- Hero Section (Expectation Management) -->
+        <section class="mb-10 bg-slate-900 rounded-[2.5rem] p-8 md:p-12 text-white relative overflow-hidden shadow-2xl">
+            <div class="relative z-10 max-w-2xl">
+                <div class="inline-block px-3 py-1 bg-amber-500/20 border border-amber-500/30 text-amber-400 text-xs font-bold rounded-full mb-6">
+                    ⚠️ 2月枯水期特别提示
+                </div>
+                <h2 class="text-3xl md:text-4xl font-bold mb-4 serif leading-tight">没有水上公路，<br>却有<span class="text-amber-400">万亩金黄草海</span>。</h2>
+                <p class="text-slate-400 text-sm leading-relaxed mb-8">
+                    2月份的鄱阳湖正处于一年中的极枯水期。您将看不到大水漫过公路的景象，取而代之的是一望无际的蓼子花海遗迹与金黄色的湿地草原。此时，正是<span class="text-white font-bold">西伯利亚白鹤</span>在此越冬的最密集时期。
+                </p>
+                <div class="flex flex-wrap gap-4">
+                    <div class="bg-white/10 px-5 py-3 rounded-2xl border border-white/10 backdrop-blur-sm">
+                        <span class="block text-[10px] text-slate-400 uppercase font-bold mb-1">湖区气温预估</span>
+                        <span class="text-xl font-bold">6°C (体感 2°C)</span>
+                    </div>
+                    <div class="bg-white/10 px-5 py-3 rounded-2xl border border-white/10 backdrop-blur-sm">
+                        <span class="block text-[10px] text-slate-400 uppercase font-bold mb-1">湖面风力</span>
+                        <span class="text-xl font-bold text-sky-300">5-6级 阵风</span>
+                    </div>
+                </div>
+            </div>
+            <!-- Decorative abstract shape -->
+            <div class="absolute -right-32 -top-32 w-96 h-96 bg-sky-500/20 rounded-full blur-3xl"></div>
+        </section>
+
+        <!-- Sub-Route Selection -->
+        <section class="mb-8">
+            <h3 class="text-xs font-bold text-slate-400 uppercase tracking-widest mb-4 ml-2">选择您在吴城的侧重点</h3>
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-4" id="tab-container">
+                <!-- Tabs injected by JS -->
+            </div>
+        </section>
+
+        <!-- Dynamic Content Area -->
+        <div class="grid grid-cols-1 lg:grid-cols-12 gap-8 mb-12">
+            
+            <!-- Left: Timeline (7/12) -->
+            <div class="lg:col-span-7 bg-white rounded-[2.5rem] p-8 md:p-12 shadow-sm border border-slate-200">
+                <div class="flex items-center justify-between mb-10 border-b border-slate-100 pb-6">
+                    <div>
+                        <h2 id="route-title" class="text-2xl font-bold text-slate-800 serif"></h2>
+                        <p id="route-desc" class="text-sm text-slate-500 mt-2"></p>
+                    </div>
+                </div>
+
+                <div id="timeline-container" class="mt-4">
+                    <!-- Steps Injected by JS -->
+                </div>
+            </div>
+
+            <!-- Right: Charts & Data (5/12) -->
+            <div class="lg:col-span-5 space-y-8">
+                
+                <!-- Chart 1: Physical / Temperature Line -->
+                <div class="bg-white rounded-[2rem] p-8 shadow-sm border border-slate-200">
+                    <h4 class="text-center text-xs font-bold text-slate-400 uppercase tracking-widest mb-6">全天体感温度与疲劳度</h4>
+                    <div class="chart-container" style="height: 220px;">
+                        <canvas id="lineChart"></canvas>
+                    </div>
+                    <p class="text-[10px] text-slate-400 text-center mt-4">红线为体感温度。湖区午后风大，热量流失极快。</p>
+                </div>
+
+                <!-- Chart 2: Bird Radar -->
+                <div class="bg-white rounded-[2rem] p-8 shadow-sm border border-slate-200">
+                    <h4 class="text-center text-xs font-bold text-slate-400 uppercase tracking-widest mb-6">今日候鸟观测概率预测</h4>
+                    <div class="chart-container" style="height: 220px;">
+                        <canvas id="radarChart"></canvas>
+                    </div>
+                </div>
+
+                <!-- Equipment Checklist -->
+                <div class="bg-sky-50 rounded-[2rem] p-8 border border-sky-100">
+                    <h4 class="font-bold text-sky-900 mb-4 flex items-center gap-2">
+                        <span>🎒</span> 湿地狂风防御指南
+                    </h4>
+                    <ul class="space-y-3">
+                        <li class="flex items-center gap-2 text-sm text-sky-800">
+                            <span class="w-2 h-2 rounded-full bg-amber-500"></span>
+                            <strong>冲锋衣/防风羽绒服：</strong> 绝对必备，毛衣不抗风。
+                        </li>
+                        <li class="flex items-center gap-2 text-sm text-sky-800">
+                            <span class="w-2 h-2 rounded-full bg-amber-500"></span>
+                            <strong>望远镜：</strong> 候鸟距离栈道较远，手机无法拍清。
+                        </li>
+                        <li class="flex items-center gap-2 text-sm text-sky-800">
+                            <span class="w-2 h-2 rounded-full bg-amber-500"></span>
+                            <strong>防滑运动鞋：</strong> 草海内部可能有暗坑或泥泞。
+                        </li>
+                        <li class="flex items-center gap-2 text-sm text-sky-800">
+                            <span class="w-2 h-2 rounded-full bg-amber-500"></span>
+                            <strong>保温杯装满热水：</strong> 镇外几乎没有便利店。
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+
+    </main>
+
+    <footer class="bg-slate-900 text-slate-400 py-10 text-center text-xs border-t-4 border-sky-500">
+        <p>南昌周边自驾深度游报告 · 永修吴城专版 | 2026</p>
+        <p class="mt-2 text-[10px] opacity-50">请文明观鸟，切勿大声喧哗或投喂野生候鸟。</p>
+    </footer>
+
+    <script>
+        // Data Store
+        const subRoutes = [
+            {
+                id: 'photo',
+                icon: '📸',
+                title: '风光摄影与草海漫步线',
+                desc: '侧重于拍摄大湖池公路枯水期的金黄草原，以及望湖亭的壮美日落。',
+                birds: [85, 60, 40, 70, 50], // 天鹅, 白鹤, 东方白鹳, 雁鸭, 鸻鹬
+                fatigue: [20, 40, 60, 80, 50], // 疲劳度曲线
+                temp: [5, 12, 10, 4, 3], // 体感温度曲线
+                timeline: [
+                    { time: '09:00', title: '南昌出发', desc: '经昌九高速（G70）向北，从永修互通下高速，转入吴城方向。全程高速免费。' },
+                    { time: '10:30', title: '永修大湖池“水上公路”', desc: '抵达著名公路。此时没有水，但两侧是极其辽阔的湿地草原。把车停在指定停车场，下车走进草海拍照，仿佛置身内蒙古。' },
+                    { time: "12:30", title: "吴城古镇午餐", desc: "前往古镇。必点：藜蒿炒腊肉、鄱阳湖野生杂鱼（视当地禁渔政策可能为特许养殖鱼）。" },
+                    { time: "14:30", title: "常湖池观鸟点", desc: "驾车前往常湖池。走上木栈道，用长焦镜头拍摄远处的雁鸭群和天鹅。" },
+                    { time: "16:30", title: "望湖亭看日落", desc: "登上望湖亭（吴城镇最高点），俯瞰修河与赣江交汇，欣赏落霞与孤鹜齐飞的绝美日落。" },
+                    { time: "18:00", title: "迎着夜色返程", desc: "日落后气温骤降，迅速回到车内开启暖气，1.5小时轻松回到南昌。" }
+                ]
+            },
+            {
+                id: 'bird',
+                icon: '🔭',
+                title: '硬核深度观鸟科普线',
+                desc: '重点在各个观鸟保护站停留，寻找珍稀的西伯利亚白鹤与东方白鹳。',
+                birds: [90, 95, 85, 90, 80],
+                fatigue: [10, 30, 50, 70, 85], 
+                temp: [4, 10, 9, 3, 1], 
+                timeline: [
+                    { time: '08:30', title: '提早出发', desc: '鸟类在清晨较为活跃，建议比常规路线提早半小时出门。' },
+                    { time: '10:00', title: '吴城候鸟保护区展示中心', desc: '先到室内展馆了解鄱阳湖候鸟迁徙知识，租借专业的双筒望远镜。' },
+                    { time: "11:00", title: "大湖池观鸟站", desc: "前往大湖池。这里是白鹤最集中的区域。由于距离较远，必须使用高倍望远镜。保持绝对安静。" },
+                    { time: "13:00", title: "自带干粮/简餐", desc: "为了不错过观鸟时机，建议在观鸟站附近的休息区吃自带的自热米饭或干粮。" },
+                    { time: "14:30", title: "朱市湖/常湖池", desc: "转移阵地。这里的浅滩更容易看到东方白鹳和黑鹳在觅食。" },
+                    { time: "17:30", title: "收拾设备返程", desc: "趁着天黑前离开湖区土路，驶入铺装省道返回南昌。" }
+                ]
+            },
+            {
+                id: 'town',
+                icon: '🏮',
+                title: '古镇年味与休闲自驾线',
+                desc: '老少皆宜，开车走走停停，感受江西四大名镇之一吴城镇的春节烟火气。',
+                birds: [60, 30, 20, 60, 30],
+                fatigue: [10, 20, 30, 40, 20], 
+                temp: [6, 14, 13, 6, 5], 
+                timeline: [
+                    { time: '10:00', title: '慵懒出发', desc: '睡到自然醒。避开早晨刺骨的寒风，等太阳完全升起后再出发。' },
+                    { time: '11:30', title: '穿越草海公路', desc: '车窗半下，以40km/h的速度慢穿5公里的草海公路，享受阳光与湿地的广阔。' },
+                    { time: "12:30", title: "吴城古镇寻味", desc: "深入古镇老街。正月初三街上有卖油炸米粑、水酒的摊位。找一家老字号慢慢吃顿丰盛的土菜。" },
+                    { time: "14:30", title: "吉安会馆与古码头", desc: "参观古镇内遗留的会馆建筑，走到江边的古码头，想象当年“装不完的吴城，卸不尽的汉口”的繁华。" },
+                    { time: "16:00", title: "湖边栈道散步", desc: "在镇外的栈道上简单散步，看看近处的野鸭，不用强求寻找白鹤。" },
+                    { time: "17:00", title: "提前返昌", desc: "赶在夜间大降温前回到南昌市区，可以安排晚上的聚餐或电影。" }
+                ]
+            }
+        ];
+
+        let lineChart = null;
+        let radarChart = null;
+
+        function renderTabs(activeIndex) {
+            const container = document.getElementById('tab-container');
+            container.innerHTML = subRoutes.map((route, index) => `
+                <button onclick="changeRoute(${index})" class="p-4 rounded-2xl border-2 transition-all font-bold text-sm text-left flex items-center gap-3 ${index === activeIndex ? 'tab-active' : 'tab-inactive'}">
+                    <span class="text-2xl">${route.icon}</span>
+                    <span>${route.title.split('：')[0]}</span>
+                </button>
+            `).join('');
+        }
+
+        function changeRoute(index) {
+            const route = subRoutes[index];
+            renderTabs(index);
+
+            // Update Text
+            document.getElementById('route-title').innerText = route.icon + " " + route.title;
+            document.getElementById('route-desc').innerText = route.desc;
+
+            // Update Timeline
+            const tlBox = document.getElementById('timeline-container');
+            tlBox.innerHTML = route.timeline.map(item => `
+                <div class="timeline-box">
+                    <span class="block text-[10px] font-black text-sky-600 mb-1 uppercase tracking-widest">${item.time}</span>
+                    <h5 class="font-bold text-slate-800 text-base">${item.title}</h5>
+                    <p class="text-xs text-slate-500 mt-2 leading-relaxed">${item.desc}</p>
+                </div>
+            `).join('');
+
+            updateCharts(route);
+        }
+
+        function updateCharts(route) {
+            // Chart 1: Line Chart (Temp vs Fatigue)
+            const ctxLine = document.getElementById('lineChart').getContext('2d');
+            if (lineChart) lineChart.destroy();
+            lineChart = new Chart(ctxLine, {
+                type: 'line',
+                data: {
+                    labels: ['09:00', '12:00', '14:00', '17:00', '19:00'],
+                    datasets: [
+                        {
+                            label: '体感温度 (°C)',
+                            data: route.temp,
+                            borderColor: '#ef4444',
+                            backgroundColor: '#ef4444',
+                            yAxisID: 'yTemp',
+                            tension: 0.4,
+                            borderWidth: 3
+                        },
+                        {
+                            label: '疲劳负荷 (0-100)',
+                            data: route.fatigue,
+                            borderColor: '#cbd5e1',
+                            backgroundColor: 'rgba(203, 213, 225, 0.2)',
+                            fill: true,
+                            yAxisID: 'yFatigue',
+                            tension: 0.4
+                        }
+                    ]
+                },
+                options: {
+                    responsive: true, maintainAspectRatio: false,
+                    plugins: { legend: { position: 'top', labels: { boxWidth: 10, font: { size: 10 } } } },
+                    scales: {
+                        yTemp: { type: 'linear', position: 'left', min: -5, max: 20, ticks: { callback: v => v+'°C', font: {size: 10} } },
+                        yFatigue: { type: 'linear', position: 'right', min: 0, max: 100, grid: { display: false }, ticks: { display: false } },
+                        x: { grid: { display: false }, ticks: { font: { size: 10 } } }
+                    }
+                }
+            });
+
+            // Chart 2: Radar Chart (Birds)
+            const ctxRadar = document.getElementById('radarChart').getContext('2d');
+            if (radarChart) radarChart.destroy();
+            radarChart = new Chart(ctxRadar, {
+                type: 'radar',
+                data: {
+                    labels: ['小天鹅', '白鹤', '东方白鹳', '大雁/野鸭', '鸻鹬类'],
+                    datasets: [{
+                        label: '偶遇概率',
+                        data: route.birds,
+                        backgroundColor: 'rgba(14, 165, 233, 0.2)',
+                        borderColor: '#0ea5e9',
+                        pointBackgroundColor: '#0ea5e9',
+                        borderWidth: 2
+                    }]
+                },
+                options: {
+                    responsive: true, maintainAspectRatio: false,
+                    scales: { r: { beginAtZero: true, max: 100, ticks: { display: false } } },
+                    plugins: { legend: { display: false } }
+                }
+            });
+        }
+
+        // Init
+        window.onload = () => changeRoute(0);
+    </script>
